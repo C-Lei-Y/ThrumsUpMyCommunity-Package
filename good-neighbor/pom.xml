@@ -13,7 +13,7 @@
 	<artifactId>goodneigbor-server</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>goodneighbor-server</name>
-	<description>goodneighbor Server</description>
+	<description>goodneighbor app Server</description>
 
 	<properties>
 		<java.version>11</java.version>
