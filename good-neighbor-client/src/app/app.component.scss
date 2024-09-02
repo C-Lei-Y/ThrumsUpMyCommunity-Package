@@ -1,0 +1,23 @@
+@import '../global.scss';
+
+.mat-toolbar {
+  min-width: 800px;
+}
+
+.appName {
+  margin-right: 20px;
+  font-size: $font-boost-base;
+}
+
+.unavailableApp {
+  margin-top: 50px;
+  color: $color-red-error;
+  text-align: center;
+  font-size: 400%;
+}
+
+.initLoading {
+  width: 200px;
+  margin: auto;
+  padding-top: 10%;
+}

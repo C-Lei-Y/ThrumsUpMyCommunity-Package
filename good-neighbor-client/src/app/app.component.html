@@ -1,0 +1,55 @@
+<div *ngIf="initApp">
+  <mat-toolbar color="primary">
+    <h1>
+      <a mat-button class="appName" routerLink="/" title="Home" i18n-title>
+        Post-It
+      </a>
+    </h1>
+    <button mat-icon-button (click)="like()" title="Like" i18n-title>
+      <mat-icon
+        [matBadge]="likes$ | async"
+        matBadgePosition="above after"
+        matBadgeColor="accent"
+        matBadgeOverlap="false"
+      >
+        thumb_up
+      </mat-icon>
+    </button>
+
+    <span class="fill-remaining-space"></span>
+
+    <mat-progress-spinner *ngIf="loading$ | async" mode="indeterminate" color="accent" diameter="40">
+    </mat-progress-spinner>
+    <button mat-button title="Change language" i18n-title [matMenuTriggerFor]="langMenu">
+      <mat-icon>language</mat-icon>
+    </button>
+    <mat-menu #langMenu="matMenu">
+      <button mat-menu-item i18n (click)="changeLang('en')">English</button>
+      <button mat-menu-item i18n (click)="changeLang('fr')">French</button>
+    </mat-menu>
+
+    <a mat-icon-button download="notes.csv" [href]="exportNotesUrl" title="Export" i18n-title>
+      <mat-icon>get_app</mat-icon>
+    </a>
+    <button mat-button routerLink="/settings" title="Settings" i18n-title>
+      <mat-icon>settings</mat-icon> &nbsp;
+      <ng-container i18n>Settings</ng-container>
+    </button>
+
+    <button *ngIf="isLoggedIn" mat-icon-button (click)="logout()" title="Logout" i18n-title>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <router-outlet *ngIf="availableApp"></router-outlet>
+
+  <div *ngIf="!availableApp" class="unavailableApp" i18n>
+    Application Unavailable
+  </div>
+</div>
+
+<div class="initLoading" *ngIf="!initApp">
+  <mat-spinner diameter="200"></mat-spinner>
+</div>
+
+<div style="display: none;">version: {{ appVersion }}</div>

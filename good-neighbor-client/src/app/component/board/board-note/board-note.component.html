@@ -1,0 +1,65 @@
+<mat-card class="card" [ngClass]="getColorClass()" appHighlight>
+  <mat-card-header>
+    <mat-card-title class="titleCard">
+      {{ note.name }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content (dblclick)="edit()">
+    <p class="text">{{ note.text }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button (click)="changeOrder(-1)" mat-icon-button title="Move up" i18n-title>
+      <mat-icon>arrow_upward</mat-icon>
+    </button>
+    <button (click)="changeOrder(1)" mat-icon-button title="Move down" i18n-title>
+      <mat-icon>arrow_downward</mat-icon>
+    </button>
+
+    <button mat-icon-button [matMenuTriggerFor]="boardMenu" title="Move to another board" i18n-title>
+      <mat-icon>forward</mat-icon>
+    </button>
+    <mat-menu #boardMenu="matMenu">
+      <button *ngFor="let board of otherBoardList" mat-menu-item (click)="changeToBoard(board)">
+        {{ board.name }}
+      </button>
+    </mat-menu>
+
+    <button (click)="edit()" mat-button i18n title="Edit content" i18n-title>EDIT</button>
+
+    <button (click)="changeColor()" mat-icon-button title="Change color" i18n-title>
+      <mat-icon>colorize</mat-icon>
+    </button>
+
+    <button
+      *ngIf="note.attachedFile"
+      (click)="viewAttachedFile()"
+      mat-icon-button
+      mat-raised-button
+      title="View the attachment"
+      i18n-title
+    >
+      <mat-icon>cloud_download</mat-icon>
+    </button>
+    <ng-container *ngIf="!note.attachedFile">
+      <input
+        #inputFile
+        hidden="true"
+        type="file"
+        onclick="this.value=null"
+        (change)="uploadFile($event?.target)"
+        title="hidden upload"
+      />
+      <button (click)="inputFile.click()" mat-icon-button title="Upload an attachment" i18n-title>
+        <mat-icon>cloud_upload</mat-icon>
+      </button>
+    </ng-container>
+
+    <div class="buttonRight">
+      <button (click)="deleteNote()" mat-icon-button title="Delete" i18n-title>
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,30 @@
+<mat-nav-list>
+  <a mat-list-item [routerLink]="['board']" (click)="openLink($event)" [ngClass]="getDynamicClass('tabs')">
+    <span class="title" i18n>Tabs</span>
+    <span class="indication" i18n>individually display with a tab for each board (default)</span>
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <a
+    mat-list-item
+    [routerLink]="['board', { view: 'panels' }]"
+    (click)="openLink($event)"
+    [ngClass]="getDynamicClass('panels')"
+  >
+    <span class="title" i18n>Panels</span>
+    <span class="indication" i18n>each board in a panel which can be displayed or hidden</span>
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <a
+    mat-list-item
+    [routerLink]="['board', { view: 'table' }]"
+    (click)="openLink($event)"
+    [ngClass]="getDynamicClass('table')"
+  >
+    <span class="title" i18n>Table</span>
+    <span class="indication" i18n>all boards in column (support drag and drop)</span>
+  </a>
+</mat-nav-list>

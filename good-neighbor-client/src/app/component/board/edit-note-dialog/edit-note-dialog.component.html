@@ -1,0 +1,33 @@
+<h2 mat-dialog-title i18n>Edit Note</h2>
+
+<mat-dialog-content>
+  <ng-container *ngIf="editedNote">
+    <mat-form-field class="formField">
+      <input
+        type="text"
+        matInput
+        placeholder="Title"
+        aria-label="title"
+        i18n-placeholder
+        [(ngModel)]="editedNote.name"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="formField">
+      <textarea
+        matInput
+        placeholder="Message"
+        aria-label="message"
+        i18n-placeholder
+        [(ngModel)]="editedNote.text"
+      ></textarea>
+    </mat-form-field>
+  </ng-container>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <div class="buttonCenter">
+    <button mat-button mat-dialog-close i18n>Cancel</button>
+    <button (click)="saveEdit()" mat-button color="primary" cdkFocusInitial i18n>Save</button>
+  </div>
+</mat-dialog-actions>

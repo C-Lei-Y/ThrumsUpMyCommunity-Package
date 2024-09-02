@@ -1,0 +1,10 @@
+@import '../../../../global.scss';
+.indication {
+  font-style: italic;
+  font-size: $font-default-size;
+  margin-left: $margin-small;
+}
+
+.viewSelected {
+  font-weight: bold;
+}

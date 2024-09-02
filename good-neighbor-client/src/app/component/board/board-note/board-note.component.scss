@@ -1,0 +1,40 @@
+@import '../../../../global.scss';
+
+.card {
+  width: 400px;
+  margin: $margin-small;
+  transition: height 1s;
+
+  .titleCard {
+    font-size: $font-boost-small;
+  }
+  .text {
+    white-space: pre-wrap;
+  }
+  .buttonRight {
+    float: right;
+  }
+
+  .mat-raised-button.mat-icon-button {
+    background-color: #ffffff70;
+  }
+
+  &.white {
+    background-color: $color-white-postit;
+  }
+  &.yellow {
+    background-color: $color-yellow-postit;
+  }
+  &.orange {
+    background-color: $color-orange-postit;
+  }
+  &.blue {
+    background-color: $color-blue-postit;
+  }
+  &.green {
+    background-color: $color-green-postit;
+  }
+  &.pink {
+    background-color: $color-pink-postit;
+  }
+}

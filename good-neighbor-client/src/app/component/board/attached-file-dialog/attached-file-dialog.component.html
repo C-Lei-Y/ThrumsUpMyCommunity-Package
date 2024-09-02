@@ -1,0 +1,21 @@
+<h2 mat-dialog-title i18n>Attachment</h2>
+
+<mat-dialog-content class="content">
+  <strong>{{ attachedFile.filename }}</strong>
+  <div class="descriptionFile">
+    <ng-container *ngIf="attachedFile.size"> {{ attachedFile.size / 1000 }} ko </ng-container>
+    <small>({{ attachedFile.type }})</small>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button (click)="deleteFile()" mat-icon-button i18n-title title="Delete the attachment" color="warn">
+    <mat-icon>delete</mat-icon>
+  </button>
+
+  <div class="fill-remaining-space buttonRight">
+    <button (click)="download()" mat-button i18n-title title="Download file" color="primary" cdkFocusInitial i18n>
+      DOWNLOAD
+    </button>
+  </div>
+</mat-dialog-actions>

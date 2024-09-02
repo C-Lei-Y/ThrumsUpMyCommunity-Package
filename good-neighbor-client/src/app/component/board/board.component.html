@@ -1,0 +1,74 @@
+<div class="board">
+  <div class="changeDisplayMenu">
+    <button mat-raised-button color="accent" (click)="openChangeView()" title="Change boards view" i18n-title>
+      <mat-icon>view_list</mat-icon> &nbsp;
+      <ng-container i18n>Change view</ng-container>
+    </button>
+  </div>
+
+  <ng-container [ngSwitch]="view">
+    <!-- Panels View -->
+    <mat-accordion *ngSwitchCase="'panels'" multi="true" togglePosition="before">
+      <mat-expansion-panel *ngFor="let board of boardList" (opened)="loadNoteList(board.id)">
+        <mat-expansion-panel-header>
+          <span class="boardTitle">
+            {{ board.name }}
+          </span>
+        </mat-expansion-panel-header>
+        <app-board-panel
+          *ngIf="board.id"
+          [board]="board"
+          [noteList]="getNoteList(board.id)"
+          [otherBoardList]="getOtherBoardList(board.id)"
+          [parameterNoteMax]="parameterNoteMax"
+          (askRefreshBoard)="loadNoteList($event)"
+        ></app-board-panel>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <!-- Table View-->
+    <div *ngSwitchCase="'table'" class="flexTable" cdkDropListGroup>
+      <div *ngFor="let board of boardList" class="flexPanel">
+        <div cdkDropList [cdkDropListData]="board" (cdkDropListDropped)="dropNote($event)">
+          <div class="boardTitle">{{ board.name }}</div>
+          <app-board-panel
+            *ngIf="board.id"
+            [board]="board"
+            [noteList]="getNoteList(board.id)"
+            [otherBoardList]="getOtherBoardList(board.id)"
+            [parameterNoteMax]="parameterNoteMax"
+            (askRefreshBoard)="loadNoteList($event)"
+            [noteDraggable]="true"
+          ></app-board-panel>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs View (default) -->
+    <mat-tab-group
+      *ngSwitchDefault
+      mat-stretch-tabs
+      [(selectedIndex)]="selectedIndex"
+      (selectedTabChange)="changeTabBoard($event)"
+    >
+      <mat-tab *ngFor="let board of boardList">
+        <ng-template mat-tab-label>
+          <span class="boardTitle">
+            {{ board.name }}
+          </span>
+        </ng-template>
+
+        <ng-template matTabContent>
+          <app-board-panel
+            *ngIf="board.id"
+            [board]="board"
+            [noteList]="getNoteList(board.id)"
+            [otherBoardList]="getOtherBoardList(board.id)"
+            [parameterNoteMax]="parameterNoteMax"
+            (askRefreshBoard)="loadNoteList($event)"
+          ></app-board-panel>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </ng-container>
+</div>
