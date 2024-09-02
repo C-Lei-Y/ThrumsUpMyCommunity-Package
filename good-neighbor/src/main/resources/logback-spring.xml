@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds">
+
+    <springProfile name="default">
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <!-- standard pattern for developers -->
+                <pattern>%d{dd-MM HH:mm:ss.SSS} [%t] %5p %c{4}:%L %m%n</pattern>
+            </encoder>
+        </appender>
+        <root level="info">
+            <appender-ref ref="stdout"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="!default">
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <!-- pattern for writing log with stacktrace in one line -->
+                <pattern>%d{dd-MM HH:mm:ss.SSS} [%t] %5p %c{4}:%L %replace(%m - %ex{100}){'[\r\n\t]+', ' '}%nopex%n</pattern>
+            </encoder>
+        </appender>
+        <root level="info">
+            <appender-ref ref="stdout"/>
+        </root>
+    </springProfile>
+
+</configuration>
