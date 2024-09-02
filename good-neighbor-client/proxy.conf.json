@@ -1,0 +1,17 @@
+{
+  "/postit-server": {
+    "target": "http://localhost:8080/",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/postit-server": ""
+    }
+  },
+  "/postit-server/websocket": {
+    "target": "ws://localhost:8080/websocket",
+    "ws": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/postit-server": ""
+    }
+  }
+}
