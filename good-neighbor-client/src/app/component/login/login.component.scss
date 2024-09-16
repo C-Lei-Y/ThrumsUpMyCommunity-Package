@@ -1,0 +1,38 @@
+@import "../../../global.scss";
+
+.login {
+
+    min-width: 300px;
+    width: 50%;
+    max-width: 600px;
+    margin: auto;
+
+    .loginForm {
+        padding: $margin-large;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        & > * {
+            margin: $margin-base;
+        }
+
+        .buttonZone button {
+            width: 50%;
+        }
+    }
+
+    .alreadyConnected {
+        text-align: center;
+        font-size: 105%;
+        button {
+            margin-top: $margin-large;
+        }
+    }
+
+    .help {
+        margin-top: $margin-large;
+        text-align: center;
+    }
+
+}

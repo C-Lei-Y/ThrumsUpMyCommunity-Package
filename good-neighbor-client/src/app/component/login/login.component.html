@@ -1,0 +1,45 @@
+<div class="login">
+
+  <h1 i18n>Sign in</h1>
+
+  <mat-card *ngIf="!userConnected" class="mat-elevation-z4">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="loginForm">
+
+      <mat-form-field>
+        <input type="text" matInput placeholder="Username" i18n-placeholder formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="password" matInput placeholder="Password" i18n-placeholder formControlName="password">
+      </mat-form-field>
+
+      <div *ngIf="!loginInProgress" class="buttonZone">
+        <button type="submit" mat-button mat-raised-button color="primary" cdkFocusInitial i18n>
+          LOGIN
+        </button>
+      </div>
+
+      <div *ngIf="loginInProgress">
+        <mat-progress-bar mode="indeterminate" color="accent">
+        </mat-progress-bar>
+      </div>
+
+    </form>
+  </mat-card>
+
+  <mat-card *ngIf="userConnected" class="mat-elevation-z4" class="alreadyConnected">
+    <ng-container i18n>You are connected as</ng-container>
+    <em> {{ userConnected.username }} </em>
+    <br />
+
+    <button type="button" mat-button mat-raised-button color="warn" cdkFocusInitial (click)="logout()" i18n>
+      LOGOUT
+    </button>
+  </mat-card>
+
+  <div class="help">
+    <ng-container i18n>Use the following username/password for Sign in :</ng-container> <br />
+    admin/admin or superadmin/superadmin
+  </div>
+
+</div>
