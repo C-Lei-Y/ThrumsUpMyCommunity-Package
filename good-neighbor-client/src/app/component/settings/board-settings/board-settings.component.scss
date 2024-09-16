@@ -1,0 +1,55 @@
+@import '../../../../global.scss';
+
+.boardSettings {
+  .myTable {
+    min-width: 400px;
+    width: 80%;
+    margin: auto;
+
+    .mat-table {
+      width: 100%;
+
+      th.mat-header-cell {
+        text-align: center;
+      }
+      .mat-cell {
+        text-align: center;
+        justify-content: center;
+      }
+    }
+
+    .paddingTd {
+      padding-top: $margin-base;
+      padding-right: $margin-base;
+    }
+    .mat-form-field {
+      width: 100%;
+    }
+    .actionCell {
+      width: 300px;
+      .actionZone {
+        button {
+          margin: 0 $margin-small;
+        }
+      }
+    }
+
+    .mat-column-id {
+      width: 10%;
+    }
+    .mat-column-name {
+      width: 50%;
+    }
+    .mat-column-order {
+      width: 10%;
+    }
+    .mat-column-actions {
+      width: 30%;
+    }
+  }
+
+  .creationZone {
+    margin-top: $margin-base;
+    text-align: center;
+  }
+}

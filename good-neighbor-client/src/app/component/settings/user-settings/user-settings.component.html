@@ -1,0 +1,82 @@
+<div class="userSettings">
+  <div class="mat-elevation-z2 myTable">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="id">
+        <th scope="col" mat-header-cell *matHeaderCellDef i18n>Id</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th scope="col" mat-header-cell *matHeaderCellDef i18n>Username</th>
+        <td mat-cell *matCellDef="let element" class="paddingTd">
+          <mat-form-field>
+            <input matInput placeholder="Username" i18n-placeholder [(ngModel)]="element.username" required />
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="password">
+        <th scope="col" mat-header-cell *matHeaderCellDef i18n>Password</th>
+        <td mat-cell *matCellDef="let element" class="paddingTd">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Password"
+              i18n-placeholder
+              [(ngModel)]="element.password"
+              [pattern]="passwordPattern"
+            />
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="roleList">
+        <th scope="col" mat-header-cell *matHeaderCellDef i18n>Roles</th>
+        <td mat-cell *matCellDef="let element" class="paddingTd">
+          <mat-form-field>
+            <mat-label>Roles</mat-label>
+            <mat-select [(ngModel)]="element.roleList" multiple>
+              <mat-option *ngFor="let role of roleList" [value]="role">
+                {{ role }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="enabled">
+        <th scope="col" mat-header-cell *matHeaderCellDef i18n>Enabled</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox [(ngModel)]="element.enabled" color="primary"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th scope="col" mat-header-cell *matHeaderCellDef i18n>Actions</th>
+        <td mat-cell *matCellDef="let element" class="actionCell">
+          <div class="actionZone">
+            <button
+              (click)="saveUser(element)"
+              [disabled]="!isValidForSave(element)"
+              mat-raised-button
+              color="primary"
+              i18n
+            >
+              Save
+            </button>
+            <button (click)="deleteUser(element)" mat-raised-button color="warn" i18n>Delete</button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <div class="creationZone">
+    <button (click)="createUser()" mat-raised-button color="primary" i18n>Create user</button>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="settings">
+
+  <h1><ng-container i18n>Settings</ng-container>
+
+    <div class="refreshZone">
+      <button type="button" mat-icon-button title="Refresh" i18n-title (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  </h1>
+
+  <mat-accordion>
+
+    <mat-expansion-panel *appHasRole="'ROLE_BOARD_WRITE'">
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n>
+          Board Configuration
+        </mat-panel-title>
+        <mat-panel-description i18n>
+          Add, update and delete boards
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <app-board-settings #boardSettings></app-board-settings>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel *appHasRole="'ROLE_USER_WRITE'">
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n>
+          User Configuration
+        </mat-panel-title>
+        <mat-panel-description i18n>
+          Add, update and delete users
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <app-user-settings #userSettings></app-user-settings>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+</div>
