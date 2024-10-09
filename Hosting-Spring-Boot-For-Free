@@ -1,1 +1,5 @@
 How to host a Spring Boot application for free with Render
+
+build a docker image, include JDK 11 and spring boot application jar
+
+in Render open an service, host a docker image
